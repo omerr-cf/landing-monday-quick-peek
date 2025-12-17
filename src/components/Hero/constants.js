@@ -1,3 +1,5 @@
+import { LINKS } from "../../constants";
+
 // Hero Content
 export const HERO_CONTENT = {
   badge: "Chrome Extension for Monday.com",
@@ -13,11 +15,13 @@ export const HERO_CONTENT = {
 export const HERO_CTAS = {
   primary: {
     text: "Add to Chrome - Free",
-    href: "#pricing",
+    href: LINKS.chromeStore,
+    isExternal: true,
   },
   secondary: {
     text: "Watch Demo",
-    href: "#how-it-works",
+    href: LINKS.demoVideo,
+    isExternal: true,
   },
 };
 

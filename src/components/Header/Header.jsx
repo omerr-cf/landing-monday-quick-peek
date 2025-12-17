@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sparkles, Chrome, Menu } from "lucide-react";
+import { Sparkles, Chrome } from "lucide-react";
 import { NAV_LINKS, HEADER_CTA, LOGO } from "./constants";
 
 const Header = () => {
@@ -26,15 +26,24 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg shadow-gray-200/50" : "bg-transparent"
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg shadow-gray-200/50"
+          : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop & Mobile Top Bar */}
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow">
+          <a
+            href="#"
+            className="flex items-center gap-2.5 group cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-all group-hover:scale-105">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
@@ -54,7 +63,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="px-4 py-2 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all font-medium"
+                className="px-4 py-2 text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all font-medium cursor-pointer"
               >
                 {link.label}
               </a>
@@ -65,8 +74,9 @@ const Header = () => {
           <div className="hidden md:flex items-center">
             <a
               href={HEADER_CTA.href}
-              onClick={(e) => scrollToSection(e, HEADER_CTA.href)}
-              className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 flex items-center gap-2 hover:scale-105 active:scale-95"
+              target={HEADER_CTA.isExternal ? "_blank" : undefined}
+              rel={HEADER_CTA.isExternal ? "noopener noreferrer" : undefined}
+              className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <Chrome className="w-4 h-4" />
               {HEADER_CTA.text}
@@ -75,7 +85,7 @@ const Header = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -111,7 +121,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl font-medium transition-colors"
+                className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl font-medium transition-colors cursor-pointer"
               >
                 {link.label}
               </a>
@@ -119,8 +129,9 @@ const Header = () => {
             <div className="pt-3">
               <a
                 href={HEADER_CTA.href}
-                onClick={(e) => scrollToSection(e, HEADER_CTA.href)}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-semibold shadow-lg shadow-emerald-500/30"
+                target={HEADER_CTA.isExternal ? "_blank" : undefined}
+                rel={HEADER_CTA.isExternal ? "noopener noreferrer" : undefined}
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-semibold shadow-lg shadow-emerald-500/30 cursor-pointer hover:from-emerald-600 hover:to-emerald-700 transition-all"
               >
                 <Chrome className="w-4 h-4" />
                 {HEADER_CTA.text}

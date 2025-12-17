@@ -1,5 +1,6 @@
 import { Chrome, Target, Eye, ArrowRight } from "lucide-react";
 import { HOW_IT_WORKS_CONTENT, STEPS } from "./constants";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 
 // Icon mapping for dynamic rendering
 const ICON_MAP = {
@@ -9,14 +10,21 @@ const ICON_MAP = {
 };
 
 const HowItWorks = () => {
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
     <section
       id="how-it-works"
+      ref={sectionRef}
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 to-white"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <header className="text-center mb-16">
+        <header
+          className={`text-center mb-16 transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             {HOW_IT_WORKS_CONTENT.headline}
           </h2>
@@ -32,16 +40,26 @@ const HowItWorks = () => {
             const isLastStep = index === STEPS.length - 1;
 
             return (
-              <div key={step.id} className="relative">
+              <div
+                key={step.id}
+                className={`relative transition-all duration-700 ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 150 + 200}ms` : "0ms",
+                }}
+              >
                 {/* Step Card */}
-                <article className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <article className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-default">
                   {/* Step Number */}
                   <div className="text-6xl font-bold text-indigo-100 mb-4">
                     {step.number}
                   </div>
 
                   {/* Icon Container */}
-                  <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     {IconComponent && (
                       <IconComponent className="w-7 h-7 text-white" />
                     )}
@@ -72,4 +90,3 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
-

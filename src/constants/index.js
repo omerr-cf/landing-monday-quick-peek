@@ -20,7 +20,7 @@ export const LINKS = {
   website: "https://mondayquickpeek.com",
   privacyPolicy: "/privacy",
   termsOfService: "/terms",
-  contact: "mailto:support@mondayquickpeek.com",
+  contact: "mailto:omerbussy1995@gmail.com",
 };
 
 // Social Links

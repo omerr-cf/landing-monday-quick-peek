@@ -1,3 +1,5 @@
+import { LINKS } from "../../constants";
+
 // Header Navigation Links
 export const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -9,7 +11,8 @@ export const NAV_LINKS = [
 // Header CTA
 export const HEADER_CTA = {
   text: "Get Extension",
-  href: "#pricing",
+  href: LINKS.chromeStore,
+  isExternal: true,
 };
 
 // Logo

@@ -22,8 +22,8 @@ const Hero = () => {
   return (
     <section className="pt-28 lg:pt-32 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-white to-white overflow-hidden relative">
       {/* Background Decorative Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-300/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-300/20 rounded-full blur-3xl animate-pulse-soft" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl animate-pulse-soft" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-indigo-100/30 to-purple-100/30 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -31,29 +31,35 @@ const Hero = () => {
           {/* Left Side - Content */}
           <div className="text-center lg:text-left order-2 lg:order-1">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-indigo-100 rounded-full text-indigo-700 text-sm font-medium mb-6 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-indigo-100 rounded-full text-indigo-700 text-sm font-medium mb-6 shadow-sm animate-fade-in-down">
               <Sparkles className="w-4 h-4" />
               <span>{HERO_CONTENT.badge}</span>
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight animate-fade-in-up">
               {HERO_CONTENT.headline.regular}{" "}
-              <span className="text-indigo-600">
+              <span className="text-indigo-600 gradient-text">
                 {HERO_CONTENT.headline.highlighted}
               </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up delay-100">
               {HERO_CONTENT.subheadline}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 animate-fade-in-up delay-200">
               <a
                 href={HERO_CTAS.primary.href}
-                className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
+                target={HERO_CTAS.primary.isExternal ? "_blank" : undefined}
+                rel={
+                  HERO_CTAS.primary.isExternal
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="group px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-xl shadow-emerald-500/30 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
               >
                 <Download className="w-5 h-5" />
                 {HERO_CTAS.primary.text}
@@ -61,7 +67,13 @@ const Hero = () => {
               </a>
               <a
                 href={HERO_CTAS.secondary.href}
-                className="group px-8 py-4 bg-white text-gray-700 rounded-full font-bold text-lg border-2 border-gray-200 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all flex items-center justify-center gap-3 hover:scale-105 active:scale-95"
+                target={HERO_CTAS.secondary.isExternal ? "_blank" : undefined}
+                rel={
+                  HERO_CTAS.secondary.isExternal
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="group px-8 py-4 bg-white text-gray-700 rounded-full font-bold text-lg border-2 border-gray-200 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all flex items-center justify-center gap-3 hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <Play className="w-5 h-5" />
                 {HERO_CTAS.secondary.text}
@@ -69,7 +81,7 @@ const Hero = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-gray-600">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-sm text-gray-600 animate-fade-in-up delay-300">
               <div className="flex items-center gap-1.5">
                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 <span className="font-semibold">{TRUST_BADGES.rating}</span>
@@ -91,14 +103,14 @@ const Hero = () => {
           </div>
 
           {/* Right Side - Demo Visual */}
-          <div className="order-1 lg:order-2 relative">
+          <div className="order-1 lg:order-2 relative animate-fade-in delay-200">
             {/* Decorative Blur Circles */}
             <div className="absolute -top-8 -right-8 w-40 h-40 bg-indigo-400/30 rounded-full blur-2xl" />
             <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-emerald-400/30 rounded-full blur-2xl" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl" />
 
             {/* Demo Browser Frame */}
-            <div className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 rounded-3xl p-1 shadow-2xl shadow-indigo-500/30">
+            <div className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 rounded-3xl p-1 shadow-2xl shadow-indigo-500/30 hover:shadow-indigo-500/40 transition-shadow">
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[22px] p-6 sm:p-8">
                 {/* Browser Chrome */}
                 <div className="flex items-center gap-2 mb-4">
@@ -141,7 +153,7 @@ const Hero = () => {
                         </div>
 
                         {/* Tooltip Preview */}
-                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-900 text-white p-4 rounded-xl shadow-2xl w-56 z-10 animate-pulse">
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-900 text-white p-4 rounded-xl shadow-2xl w-56 z-10 animate-pulse-soft">
                           <div className="flex items-center gap-2 mb-2">
                             <Eye className="w-4 h-4 text-emerald-400" />
                             <span className="text-emerald-400 text-xs font-medium">
@@ -173,16 +185,21 @@ const Hero = () => {
                 </div>
 
                 {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded-xl bg-black/20">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                <a
+                  href={HERO_CTAS.secondary.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded-xl bg-black/20"
+                >
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                     <Play className="w-6 h-6 text-indigo-600 ml-1" />
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 
             {/* Floating Badge */}
-            <div className="absolute -bottom-4 -left-4 sm:left-4 bg-white rounded-2xl px-4 py-3 shadow-xl border border-gray-100 flex items-center gap-3">
+            <div className="absolute -bottom-4 -left-4 sm:left-4 bg-white rounded-2xl px-4 py-3 shadow-xl border border-gray-100 flex items-center gap-3 animate-float">
               <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
                 <Zap className="w-5 h-5 text-emerald-600" />
               </div>
