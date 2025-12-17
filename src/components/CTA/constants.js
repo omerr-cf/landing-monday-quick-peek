@@ -1,12 +1,17 @@
+import { LINKS } from "../../constants";
+
 // CTA Section Content
 export const CTA_CONTENT = {
-  headline: "Ready to Transform Your Monday.com Experience?",
-  subheadline:
-    "Join thousands of power users who save hours every week with Quick Peek Pro.",
+  headline: "Ready to Save Hours Every Week?",
+  subheadline: "Join 1,000+ Monday.com users who preview tasks faster",
   button: {
-    text: "Install Quick Peek Pro",
-    href: "#pricing",
+    text: "Add to Chrome - It's Free",
+    href: LINKS.chromeStore,
   },
-  footer: "Free version available • No credit card required",
+  trustElements: [
+    { icon: "chrome", text: "Chrome Web Store" },
+    { icon: "star", text: "⭐⭐⭐⭐⭐ 5.0 rating" },
+    { icon: "lock", text: "🔒 No data collection" },
+    { icon: "card", text: "💳 No credit card required" },
+  ],
 };
-

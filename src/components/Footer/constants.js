@@ -1,33 +1,15 @@
-// Footer Logo
-export const FOOTER_LOGO = {
-  name: "Quick Peek Pro",
-  description:
-    "The essential Chrome extension for Monday.com power users. See item details with a simple hover.",
-};
+import { LINKS } from "../../constants";
 
-// Footer Navigation Links
-export const FOOTER_NAV = {
-  product: {
-    title: "Product",
-    links: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "FAQ", href: "#faq" },
-    ],
+// Footer Content
+export const FOOTER_CONTENT = {
+  logo: {
+    name: "Monday Quick Peek Pro",
   },
-  legal: {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Contact", href: "#" },
-    ],
-  },
+  copyright: "© 2024 All rights reserved",
+  links: [
+    { label: "Privacy Policy", href: LINKS.privacyPolicy },
+    { label: "Terms of Service", href: LINKS.termsOfService },
+    { label: "Contact", href: LINKS.contact },
+  ],
+  tagline: "Made with ❤️ for Monday.com users",
 };
-
-// Footer Bottom Text
-export const FOOTER_BOTTOM = {
-  copyright: "Quick Peek Pro. All rights reserved.",
-  disclaimer: "Not affiliated with Monday.com",
-};
-

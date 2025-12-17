@@ -10,37 +10,36 @@ export const FAQ_ITEMS = [
     id: 1,
     question: "Is my Monday.com data safe?",
     answer:
-      "Absolutely! Quick Peek Pro processes everything locally in your browser. Your data never leaves your computer and is never sent to any external servers. We take privacy seriously.",
+      "Absolutely. The extension runs entirely in your browser. Your data never leaves your computer or goes to any server. We can't see your boards, tasks, or any content.",
   },
   {
     id: 2,
-    question: "Does it work with all Monday.com boards?",
+    question: "Does it work with all Monday.com plans?",
     answer:
-      "Yes! Quick Peek Pro works with any board type - Main boards, Private boards, Shareable boards, and even Dashboard views. It automatically detects Monday.com pages.",
+      "Yes! Monday Quick Peek Pro works with all Monday.com plans - Free, Basic, Standard, Pro, and Enterprise.",
   },
   {
     id: 3,
-    question: "Will it slow down Monday.com?",
+    question: "What happens after my free previews run out?",
     answer:
-      "Not at all. Quick Peek Pro is highly optimized and only activates when you hover over items. There's no impact on page load times or Monday.com performance.",
+      "You can still use Monday.com normally. The extension simply won't show tooltips until the next day, or you can upgrade to Pro for unlimited access.",
   },
   {
     id: 4,
-    question: "Can I customize what shows in tooltips?",
+    question: "Can I get a refund?",
     answer:
-      "Pro users can fully customize tooltip content. Choose which columns to display, set the order, and even create custom layouts for different board types.",
+      "Yes, we offer a 30-day money-back guarantee. No questions asked.",
   },
   {
     id: 5,
-    question: "What's the difference between Free and Pro?",
+    question: "Is there a team/enterprise plan?",
     answer:
-      "The free version includes basic hover tooltips with item name, description, and status. Pro unlocks all 20+ column types, custom layouts, updates preview, and advanced features.",
+      "Yes! Contact us for volume discounts: 10+ users get 20% off, 25+ users get 30% off.",
   },
   {
     id: 6,
-    question: "How do I cancel my subscription?",
+    question: "How do I activate my Pro license?",
     answer:
-      "You can cancel anytime from your account settings. No questions asked. You'll continue to have Pro access until the end of your billing period.",
+      "After purchase, you'll receive a license key via email. Click the extension icon, go to Settings, and paste your key.",
   },
 ];
-
