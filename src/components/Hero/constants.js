@@ -20,8 +20,8 @@ export const HERO_CTAS = {
   },
   secondary: {
     text: "Watch Demo",
-    href: LINKS.demoVideo,
-    isExternal: true,
+    // This will trigger the inline video player
+    action: "playVideo",
   },
 };
 
@@ -39,4 +39,6 @@ export const DEMO_PREVIEW = {
     title: "Instant Preview",
     subtitle: "No loading time",
   },
+  // Loom video embed URL
+  loomEmbedUrl: LINKS.loomVideo,
 };

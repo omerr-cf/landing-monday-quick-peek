@@ -1,7 +1,6 @@
+import { useState } from "react";
 import {
   Sparkles,
-  Chrome,
-  ArrowRight,
   Download,
   Play,
   Star,
@@ -10,6 +9,8 @@ import {
   Eye,
   Zap,
   MousePointer2,
+  X,
+  ArrowRight,
 } from "lucide-react";
 import {
   HERO_CONTENT,
@@ -19,6 +20,16 @@ import {
 } from "./constants";
 
 const Hero = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  const handlePlayVideo = () => {
+    setIsVideoPlaying(true);
+  };
+
+  const handleCloseVideo = () => {
+    setIsVideoPlaying(false);
+  };
+
   return (
     <section className="pt-28 lg:pt-32 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-white to-white overflow-hidden relative">
       {/* Background Decorative Elements */}
@@ -65,19 +76,13 @@ const Hero = () => {
                 {HERO_CTAS.primary.text}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a
-                href={HERO_CTAS.secondary.href}
-                target={HERO_CTAS.secondary.isExternal ? "_blank" : undefined}
-                rel={
-                  HERO_CTAS.secondary.isExternal
-                    ? "noopener noreferrer"
-                    : undefined
-                }
+              <button
+                onClick={handlePlayVideo}
                 className="group px-8 py-4 bg-white text-gray-700 rounded-full font-bold text-lg border-2 border-gray-200 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all flex items-center justify-center gap-3 hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <Play className="w-5 h-5" />
                 {HERO_CTAS.secondary.text}
-              </a>
+              </button>
             </div>
 
             {/* Trust Badges */}
@@ -122,79 +127,100 @@ const Hero = () => {
                   <div className="flex-1 bg-gray-700/50 rounded-lg px-4 py-1.5 text-gray-400 text-xs font-mono">
                     {DEMO_PREVIEW.browserUrl}
                   </div>
+                  {isVideoPlaying && (
+                    <button
+                      onClick={handleCloseVideo}
+                      className="p-1 hover:bg-gray-700 rounded-lg transition-colors cursor-pointer"
+                      aria-label="Close video"
+                    >
+                      <X className="w-4 h-4 text-gray-400 hover:text-white" />
+                    </button>
+                  )}
                 </div>
 
-                {/* Demo Content Area */}
+                {/* Demo Content Area / Video Player */}
                 <div className="bg-white rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 to-gray-50" />
+                  {isVideoPlaying ? (
+                    /* Loom Video Embed */
+                    <iframe
+                      src={`${DEMO_PREVIEW.loomEmbedUrl}?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true`}
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; fullscreen"
+                      className="absolute inset-0 w-full h-full"
+                      title="Demo Video"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 to-gray-50" />
 
-                  {/* Mock Interface */}
-                  <div className="relative w-full h-full p-4">
-                    {/* Mock Board Header */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg" />
-                      <div className="h-4 bg-gray-300 rounded w-32" />
-                    </div>
-
-                    {/* Mock Rows */}
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-100">
-                        <div className="w-3 h-3 rounded-full bg-emerald-500" />
-                        <div className="h-3 bg-gray-200 rounded flex-1" />
-                        <div className="h-6 w-16 bg-emerald-100 rounded-full" />
-                      </div>
-
-                      {/* Highlighted Row with Tooltip */}
-                      <div className="relative">
-                        <div className="flex items-center gap-3 p-3 bg-indigo-50 rounded-lg border-2 border-indigo-300 shadow-lg">
-                          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                          <div className="h-3 bg-gray-300 rounded flex-1" />
-                          <div className="h-6 w-16 bg-yellow-100 rounded-full" />
+                      {/* Mock Interface */}
+                      <div className="relative w-full h-full p-4">
+                        {/* Mock Board Header */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg" />
+                          <div className="h-4 bg-gray-300 rounded w-32" />
                         </div>
 
-                        {/* Tooltip Preview */}
-                        <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-900 text-white p-4 rounded-xl shadow-2xl w-56 z-10 animate-pulse-soft">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Eye className="w-4 h-4 text-emerald-400" />
-                            <span className="text-emerald-400 text-xs font-medium">
-                              Quick Peek
-                            </span>
+                        {/* Mock Rows */}
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-100">
+                            <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                            <div className="h-3 bg-gray-200 rounded flex-1" />
+                            <div className="h-6 w-16 bg-emerald-100 rounded-full" />
                           </div>
-                          <div className="h-3 bg-gray-700 rounded w-full mb-2" />
-                          <div className="h-2 bg-gray-700 rounded w-3/4 mb-3" />
-                          <div className="flex gap-2">
-                            <div className="h-5 w-14 bg-emerald-500/30 rounded" />
-                            <div className="h-5 w-14 bg-indigo-500/30 rounded" />
+
+                          {/* Highlighted Row with Tooltip */}
+                          <div className="relative">
+                            <div className="flex items-center gap-3 p-3 bg-indigo-50 rounded-lg border-2 border-indigo-300 shadow-lg">
+                              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                              <div className="h-3 bg-gray-300 rounded flex-1" />
+                              <div className="h-6 w-16 bg-yellow-100 rounded-full" />
+                            </div>
+
+                            {/* Tooltip Preview */}
+                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-gray-900 text-white p-4 rounded-xl shadow-2xl w-56 z-10 animate-pulse-soft">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Eye className="w-4 h-4 text-emerald-400" />
+                                <span className="text-emerald-400 text-xs font-medium">
+                                  Quick Peek
+                                </span>
+                              </div>
+                              <div className="h-3 bg-gray-700 rounded w-full mb-2" />
+                              <div className="h-2 bg-gray-700 rounded w-3/4 mb-3" />
+                              <div className="flex gap-2">
+                                <div className="h-5 w-14 bg-emerald-500/30 rounded" />
+                                <div className="h-5 w-14 bg-indigo-500/30 rounded" />
+                              </div>
+                              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-900 rotate-45" />
+                            </div>
                           </div>
-                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-900 rotate-45" />
+
+                          <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-100 opacity-50">
+                            <div className="w-3 h-3 rounded-full bg-gray-300" />
+                            <div className="h-3 bg-gray-200 rounded flex-1" />
+                            <div className="h-6 w-16 bg-gray-100 rounded-full" />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-100 opacity-50">
-                        <div className="w-3 h-3 rounded-full bg-gray-300" />
-                        <div className="h-3 bg-gray-200 rounded flex-1" />
-                        <div className="h-6 w-16 bg-gray-100 rounded-full" />
+                      {/* Cursor Icon */}
+                      <div className="absolute bottom-16 left-1/2 -translate-x-4">
+                        <MousePointer2 className="w-8 h-8 text-gray-800 drop-shadow-lg transform -rotate-6" />
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Cursor Icon */}
-                  <div className="absolute bottom-16 left-1/2 -translate-x-4">
-                    <MousePointer2 className="w-8 h-8 text-gray-800 drop-shadow-lg transform -rotate-6" />
-                  </div>
+                      {/* Play Button Overlay */}
+                      <button
+                        onClick={handlePlayVideo}
+                        className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded-xl bg-black/20"
+                      >
+                        <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                          <Play className="w-6 h-6 text-indigo-600 ml-1" />
+                        </div>
+                      </button>
+                    </>
+                  )}
                 </div>
-
-                {/* Play Button Overlay */}
-                <a
-                  href={HERO_CTAS.secondary.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer rounded-xl bg-black/20"
-                >
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                    <Play className="w-6 h-6 text-indigo-600 ml-1" />
-                  </div>
-                </a>
               </div>
             </div>
 

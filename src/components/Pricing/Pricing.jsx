@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Check, X, Shield } from "lucide-react";
 import { PRICING_CONTENT, PRICING_PLANS } from "./constants";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
@@ -7,7 +7,35 @@ const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
   const [sectionRef, isVisible] = useScrollAnimation();
 
+  // Refs for toggle buttons to measure their widths
+  const monthlyRef = useRef(null);
+  const yearlyRef = useRef(null);
+  const [toggleStyle, setToggleStyle] = useState({ width: 0, left: 0 });
+
   const { free, pro } = PRICING_PLANS;
+
+  // Update toggle background position and width based on active button
+  useEffect(() => {
+    const activeRef = isYearly ? yearlyRef : monthlyRef;
+    if (activeRef.current) {
+      const { offsetWidth, offsetLeft } = activeRef.current;
+      setToggleStyle({
+        width: offsetWidth,
+        left: offsetLeft,
+      });
+    }
+  }, [isYearly]);
+
+  // Initial measurement on mount
+  useEffect(() => {
+    if (monthlyRef.current) {
+      const { offsetWidth, offsetLeft } = monthlyRef.current;
+      setToggleStyle({
+        width: offsetWidth,
+        left: offsetLeft,
+      });
+    }
+  }, []);
 
   return (
     <section
@@ -29,24 +57,33 @@ const Pricing = () => {
             {PRICING_CONTENT.subheadline}
           </p>
 
-          {/* Monthly/Yearly Toggle */}
-          <div className="inline-flex items-center gap-3 p-1.5 bg-gray-200 rounded-full">
+          {/* Monthly/Yearly Toggle with Dynamic Sliding Background */}
+          <div className="inline-flex items-center p-1.5 bg-gray-200 rounded-full relative">
+            {/* Dynamic Sliding Background */}
+            <div
+              className="absolute top-1.5 bottom-1.5 bg-white rounded-full shadow-md transition-all duration-300 ease-out"
+              style={{
+                width: `${toggleStyle.width}px`,
+                left: `${toggleStyle.left}px`,
+              }}
+            />
+
             <button
+              ref={monthlyRef}
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 cursor-pointer ${
+              className={`relative z-10 px-6 py-2.5 rounded-full font-medium transition-colors duration-300 cursor-pointer ${
                 !isYearly
-                  ? "bg-white text-gray-900 shadow-md"
+                  ? "text-gray-900"
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
               {PRICING_CONTENT.toggleMonthly}
             </button>
             <button
+              ref={yearlyRef}
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center gap-2 cursor-pointer ${
-                isYearly
-                  ? "bg-white text-gray-900 shadow-md"
-                  : "text-gray-600 hover:text-gray-900"
+              className={`relative z-10 px-6 py-2.5 rounded-full font-medium transition-colors duration-300 flex items-center gap-2 cursor-pointer ${
+                isYearly ? "text-gray-900" : "text-gray-600 hover:text-gray-900"
               }`}
             >
               {PRICING_CONTENT.toggleYearly}
@@ -142,14 +179,34 @@ const Pricing = () => {
               <p className="text-indigo-200">{pro.description}</p>
             </div>
 
-            {/* Price */}
-            <div className="mb-8">
-              <span className="text-5xl font-bold text-white">
-                {isYearly ? pro.yearlyPrice : pro.monthlyPrice}
-              </span>
-              <span className="text-indigo-200 ml-1">
-                {isYearly ? pro.yearlyPeriod : pro.monthlyPeriod}
-              </span>
+            {/* Price with Animation */}
+            <div className="mb-8 relative h-16 overflow-hidden">
+              <div
+                className={`absolute inset-0 transition-all duration-500 ease-out ${
+                  isYearly
+                    ? "-translate-y-full opacity-0"
+                    : "translate-y-0 opacity-100"
+                }`}
+              >
+                <span className="text-5xl font-bold text-white">
+                  {pro.monthlyPrice}
+                </span>
+                <span className="text-indigo-200 ml-1">
+                  {pro.monthlyPeriod}
+                </span>
+              </div>
+              <div
+                className={`absolute inset-0 transition-all duration-500 ease-out ${
+                  isYearly
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-full opacity-0"
+                }`}
+              >
+                <span className="text-5xl font-bold text-white">
+                  {pro.yearlyPrice}
+                </span>
+                <span className="text-indigo-200 ml-1">{pro.yearlyPeriod}</span>
+              </div>
             </div>
 
             {/* Features List */}
@@ -164,9 +221,9 @@ const Pricing = () => {
               ))}
             </ul>
 
-            {/* CTA Button - White */}
+            {/* CTA Button - White (with dynamic link) */}
             <a
-              href={pro.ctaHref}
+              href={isYearly ? pro.ctaHrefYearly : pro.ctaHrefMonthly}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-4 rounded-xl font-bold text-center bg-white text-indigo-600 hover:bg-indigo-50 transition-all shadow-lg cursor-pointer hover:scale-[1.02] active:scale-[0.98]"

@@ -23,7 +23,9 @@ const Footer = () => {
               <span key={link.label} className="flex items-center gap-2">
                 <a
                   href={link.href}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {link.label}
                 </a>

@@ -48,7 +48,9 @@ export const PRICING_PLANS = {
       { text: "Future features included", included: true },
     ],
     cta: "Get Pro",
-    ctaHref: LINKS.gumroad,
+    // Separate links for monthly and yearly
+    ctaHrefMonthly: LINKS.gumroadMonthly,
+    ctaHrefYearly: LINKS.gumroadYearly,
     isPopular: true,
   },
 };

@@ -15,12 +15,16 @@ export const SITE_CONFIG = {
 export const LINKS = {
   chromeStore:
     "https://chrome.google.com/webstore/detail/monday-quick-peek-pro/YOUR_EXTENSION_ID",
-  gumroad: "https://gumroad.com/l/monday-quick-peek-pro",
-  demoVideo: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
+  gumroadMonthly: "https://gumroad.com/l/monday-quick-peek-pro",
+  gumroadYearly: "https://gumroad.com/l/monday-quick-peek-pro",
+  // Loom video embed URL - IMPORTANT: Use /embed/ not /share/
+  loomVideo: "https://www.loom.com/embed/d17a3295fb11406eb63fcecbc38427d5",
   website: "https://mondayquickpeek.com",
   privacyPolicy: "/privacy",
   termsOfService: "/terms",
-  contact: "mailto:omerbussy1995@gmail.com",
+  // Gmail compose URL - works reliably across all browsers
+  contact:
+    "https://mail.google.com/mail/?view=cm&fs=1&to=omerbussy1995@gmail.com&su=Monday%20Quick%20Peek%20Pro%20-%20Contact",
 };
 
 // Social Links
