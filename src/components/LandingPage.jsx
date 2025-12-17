@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PainPoints from "./PainPoints";
 import {
   Eye,
   Zap,
@@ -349,64 +350,7 @@ const HeroSection = () => {
   );
 };
 
-// Pain Points Section
-const PainPointsSection = () => {
-  const painPoints = [
-    {
-      icon: MousePointerClick,
-      title: "Click... Click... Click...",
-      description:
-        "Opening every single item just to see basic details? That adds up to hours of wasted time.",
-    },
-    {
-      icon: Timer,
-      title: "Context Switching Hell",
-      description:
-        "Lose focus every time you click away. Your brain needs 23 minutes to refocus!",
-    },
-    {
-      icon: Layers,
-      title: "Information Buried Deep",
-      description:
-        "Updates, status changes, and notes hidden behind multiple clicks and scrolls.",
-    },
-  ];
-
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Sound Familiar? 😩
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Monday.com is powerful, but navigating it can feel like a workout
-            for your mouse finger.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {painPoints.map((point, index) => (
-            <div
-              key={index}
-              className="bg-white p-8 rounded-2xl border border-gray-200 hover:border-red-200 hover:shadow-lg transition-all group"
-            >
-              <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-200 transition-colors">
-                <point.icon className="w-7 h-7 text-red-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                {point.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {point.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+// PainPoints is now imported from separate component
 
 // Features Section
 const FeaturesSection = () => {
@@ -911,7 +855,7 @@ const LandingPage = () => {
       <Header />
       <main>
         <HeroSection />
-        <PainPointsSection />
+        <PainPoints />
         <FeaturesSection />
         <HowItWorksSection />
         <PricingSection />
