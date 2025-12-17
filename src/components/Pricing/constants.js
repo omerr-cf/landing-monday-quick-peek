@@ -1,57 +1,54 @@
+import { LINKS } from "../../constants";
+
 // Pricing Section Content
 export const PRICING_CONTENT = {
   badge: "Simple Pricing",
   headline: "Choose Your Plan",
   subheadline: "Start free and upgrade when you need more power.",
-  guarantee: "7-day money-back guarantee. No questions asked.",
+  guarantee: "30-day money-back guarantee",
+  toggleMonthly: "Monthly",
+  toggleYearly: "Yearly",
+  saveBadge: "Save 17%",
 };
 
 // Pricing Plans Data
-export const PRICING_PLANS = [
-  {
+export const PRICING_PLANS = {
+  free: {
     id: "free",
     name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Perfect for trying out Quick Peek",
+    monthlyPrice: "$0",
+    yearlyPrice: "$0",
+    period: "/forever",
+    description: "Perfect for getting started",
     features: [
-      "Basic hover tooltips",
-      "Item name & description",
-      "Status column preview",
-      "Works on all boards",
-      "Community support",
+      { text: "5 tooltip previews per day", included: true },
+      { text: "Basic task details", included: true },
+      { text: "Works on all boards", included: true },
+      { text: "Unlimited previews", included: false },
+      { text: "Priority support", included: false },
     ],
-    notIncluded: [
-      "Custom tooltip layouts",
-      "All column types",
-      "Advanced filtering",
-      "Priority support",
-    ],
-    cta: "Get Started Free",
-    ctaHref: "#",
+    cta: "Start Free",
+    ctaHref: LINKS.chromeStore,
     isPopular: false,
   },
-  {
+  pro: {
     id: "pro",
     name: "Pro",
-    price: "$5",
-    period: "/month",
+    monthlyPrice: "$5",
+    yearlyPrice: "$49",
+    monthlyPeriod: "/month",
+    yearlyPeriod: "/year",
     description: "For power users who want it all",
+    popularBadge: "MOST POPULAR",
     features: [
-      "Everything in Free, plus:",
-      "Custom tooltip layouts",
-      "All 20+ column types",
-      "Updates & activity preview",
-      "Date column integration",
-      "People column details",
-      "Advanced filtering options",
-      "Keyboard shortcuts",
-      "Priority email support",
-      "Regular feature updates",
+      { text: "Unlimited tooltip previews", included: true },
+      { text: "All task details + description", included: true },
+      { text: "Works on all boards", included: true },
+      { text: "Priority support", included: true },
+      { text: "Future features included", included: true },
     ],
-    notIncluded: [],
-    cta: "Start Pro Trial",
-    ctaHref: "#",
+    cta: "Get Pro",
+    ctaHref: LINKS.gumroad,
     isPopular: true,
   },
-];
+};

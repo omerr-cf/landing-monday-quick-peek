@@ -15,6 +15,7 @@ export const SITE_CONFIG = {
 export const LINKS = {
   chromeStore:
     "https://chrome.google.com/webstore/detail/monday-quick-peek-pro/YOUR_EXTENSION_ID",
+  gumroad: "https://gumroad.com/l/monday-quick-peek-pro",
   demoVideo: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
   website: "https://mondayquickpeek.com",
   privacyPolicy: "/privacy",

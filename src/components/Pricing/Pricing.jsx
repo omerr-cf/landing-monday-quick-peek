@@ -1,90 +1,155 @@
-import { Check, X, Shield, BarChart3 } from "lucide-react";
+import { useState } from "react";
+import { Check, X, Shield } from "lucide-react";
 import { PRICING_CONTENT, PRICING_PLANS } from "./constants";
 
 const Pricing = () => {
+  const [isYearly, setIsYearly] = useState(false);
+
+  const { free, pro } = PRICING_PLANS;
+
   return (
-    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <header className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 rounded-full text-indigo-700 text-sm font-medium mb-4">
-            <BarChart3 className="w-4 h-4" />
-            <span>{PRICING_CONTENT.badge}</span>
-          </div>
+        <header className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             {PRICING_CONTENT.headline}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
             {PRICING_CONTENT.subheadline}
           </p>
+
+          {/* Monthly/Yearly Toggle */}
+          <div className="inline-flex items-center gap-3 p-1.5 bg-gray-200 rounded-full">
+            <button
+              onClick={() => setIsYearly(false)}
+              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                !isYearly
+                  ? "bg-white text-gray-900 shadow-md"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              {PRICING_CONTENT.toggleMonthly}
+            </button>
+            <button
+              onClick={() => setIsYearly(true)}
+              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 flex items-center gap-2 ${
+                isYearly
+                  ? "bg-white text-gray-900 shadow-md"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              {PRICING_CONTENT.toggleYearly}
+              <span className="px-2 py-0.5 bg-amber-400 text-amber-900 text-xs font-bold rounded-full">
+                {PRICING_CONTENT.saveBadge}
+              </span>
+            </button>
+          </div>
         </header>
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {PRICING_PLANS.map((plan) => (
-            <article
-              key={plan.id}
-              className={`relative bg-white rounded-3xl overflow-hidden ${
-                plan.isPopular
-                  ? "ring-2 ring-indigo-600 shadow-2xl shadow-indigo-500/20 scale-105"
-                  : "border border-gray-200 shadow-lg"
-              }`}
-            >
-              {/* Popular Badge */}
-              {plan.isPopular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white text-center py-2 text-sm font-medium">
-                  ⭐ Most Popular
-                </div>
-              )}
+          {/* Free Plan Card */}
+          <article className="relative bg-white rounded-3xl border-2 border-gray-200 p-8 hover:border-gray-300 transition-colors">
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {free.name}
+              </h3>
+              <p className="text-gray-600">{free.description}</p>
+            </div>
 
-              <div className={`p-8 ${plan.isPopular ? "pt-14" : ""}`}>
-                {/* Plan Name & Description */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
+            {/* Price */}
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-gray-900">
+                {free.monthlyPrice}
+              </span>
+              <span className="text-gray-500 ml-1">{free.period}</span>
+            </div>
 
-                {/* Price */}
-                <div className="mb-8">
-                  <span className="text-5xl font-bold text-gray-900">
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-500 ml-2">{plan.period}</span>
-                </div>
-
-                {/* Features List */}
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                  {plan.notIncluded.map((feature, index) => (
-                    <li
-                      key={`not-${index}`}
-                      className="flex items-start gap-3 opacity-40"
-                    >
-                      <X className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-500">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <a
-                  href={plan.ctaHref}
-                  className={`block w-full py-4 rounded-xl font-bold text-center transition-all ${
-                    plan.isPopular
-                      ? "bg-gradient-to-r from-indigo-600 to-indigo-700 text-white hover:from-indigo-700 hover:to-indigo-800 shadow-lg shadow-indigo-500/25"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            {/* Features List */}
+            <ul className="space-y-4 mb-8">
+              {free.features.map((feature, index) => (
+                <li
+                  key={index}
+                  className={`flex items-center gap-3 ${
+                    !feature.included ? "opacity-50" : ""
                   }`}
                 >
-                  {plan.cta}
-                </a>
-              </div>
-            </article>
-          ))}
+                  {feature.included ? (
+                    <Check className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                  ) : (
+                    <X className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  )}
+                  <span
+                    className={
+                      feature.included
+                        ? "text-gray-700"
+                        : "text-gray-400 line-through"
+                    }
+                  >
+                    {feature.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Button - Outline */}
+            <a
+              href={free.ctaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-4 rounded-xl font-bold text-center border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-all"
+            >
+              {free.cta}
+            </a>
+          </article>
+
+          {/* Pro Plan Card - Highlighted */}
+          <article className="relative bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 text-white shadow-2xl shadow-indigo-500/30">
+            {/* Popular Badge */}
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span className="px-4 py-2 bg-amber-400 text-amber-900 text-sm font-bold rounded-full shadow-lg">
+                {pro.popularBadge}
+              </span>
+            </div>
+
+            <div className="mb-8 pt-4">
+              <h3 className="text-2xl font-bold text-white mb-2">{pro.name}</h3>
+              <p className="text-indigo-200">{pro.description}</p>
+            </div>
+
+            {/* Price */}
+            <div className="mb-8">
+              <span className="text-5xl font-bold text-white">
+                {isYearly ? pro.yearlyPrice : pro.monthlyPrice}
+              </span>
+              <span className="text-indigo-200 ml-1">
+                {isYearly ? pro.yearlyPeriod : pro.monthlyPeriod}
+              </span>
+            </div>
+
+            {/* Features List */}
+            <ul className="space-y-4 mb-8">
+              {pro.features.map((feature, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <span className="text-white">{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Button - White */}
+            <a
+              href={pro.ctaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-4 rounded-xl font-bold text-center bg-white text-indigo-600 hover:bg-indigo-50 transition-all shadow-lg"
+            >
+              {pro.cta}
+            </a>
+          </article>
         </div>
 
         {/* Money-back Guarantee */}
@@ -100,4 +165,3 @@ const Pricing = () => {
 };
 
 export default Pricing;
-
