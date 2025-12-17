@@ -16,7 +16,7 @@ export const LINKS = {
   chromeStore:
     "https://chrome.google.com/webstore/detail/monday-quick-peek-pro/YOUR_EXTENSION_ID",
   gumroadMonthly: "https://gumroad.com/l/monday-quick-peek-pro",
-  gumroadYearly: "https://gumroad.com/l/monday-quick-peek-pro",
+  gumroadYearly: "https://busymind.gumroad.com/l/acgkd",
   // Loom video embed URL - IMPORTANT: Use /embed/ not /share/
   loomVideo: "https://www.loom.com/embed/d17a3295fb11406eb63fcecbc38427d5",
   website: "https://mondayquickpeek.com",
