@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
 // External Links
 export const LINKS = {
   chromeStore:
-    "https://chrome.google.com/webstore/detail/monday-quick-peek-pro/YOUR_EXTENSION_ID",
+    "https://chromewebstore.google.com/detail/monday-quick-peek/gebhiogfbilahnkeapiklhmmkohambcb",
   gumroadMonthly: "https://gumroad.com/l/monday-quick-peek-pro",
   gumroadYearly: "https://busymind.gumroad.com/l/acgkd",
   // Loom video embed URL - IMPORTANT: Use /embed/ not /share/
