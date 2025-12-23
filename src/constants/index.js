@@ -18,7 +18,7 @@ export const LINKS = {
   gumroadMonthly: "https://gumroad.com/l/monday-quick-peek-pro",
   gumroadYearly: "https://busymind.gumroad.com/l/acgkd",
   // Loom video embed URL - IMPORTANT: Use /embed/ not /share/
-  loomVideo: "https://www.loom.com/embed/d17a3295fb11406eb63fcecbc38427d5",
+  loomVideo: "https://www.loom.com/embed/17793a28d7d84b3c93b3b3bb082f8bdd",
   website: "https://mondayquickpeek.com",
   privacyPolicy: "/privacy",
   termsOfService: "/terms",
