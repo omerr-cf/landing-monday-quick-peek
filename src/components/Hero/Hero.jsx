@@ -141,12 +141,12 @@ const Hero = () => {
                 {/* Demo Content Area / Video Player */}
                 <div className="bg-white rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center relative">
                   {isVideoPlaying ? (
-                    /* Loom Video Embed */
+                    /* YouTube Video Embed */
                     <iframe
-                      src={`${DEMO_PREVIEW.loomEmbedUrl}?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true`}
+                      src={`${DEMO_PREVIEW.youtubeEmbedUrl}?autoplay=1&rel=0&modestbranding=1`}
                       frameBorder="0"
                       allowFullScreen
-                      allow="autoplay; fullscreen"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       className="absolute inset-0 w-full h-full"
                       title="Demo Video"
                     />

@@ -65,25 +65,35 @@ const StepCard = ({ step, index, isVisible, isPro = false }) => {
         >
           {IconComponent && (
             <IconComponent
-              className={`w-6 h-6 ${isPro ? "text-amber-600" : "text-indigo-600"}`}
+              className={`w-6 h-6 ${
+                isPro ? "text-amber-600" : "text-indigo-600"
+              }`}
             />
           )}
         </div>
 
         {/* Content */}
         <h3
-          className={`text-lg font-bold mb-2 ${isPro ? "text-amber-900" : "text-gray-900"}`}
+          className={`text-lg font-bold mb-2 ${
+            isPro ? "text-amber-900" : "text-gray-900"
+          }`}
         >
           {step.title}
         </h3>
-        <p className={`text-sm mb-3 ${isPro ? "text-amber-700" : "text-gray-600"}`}>
+        <p
+          className={`text-sm mb-3 ${
+            isPro ? "text-amber-700" : "text-gray-600"
+          }`}
+        >
           {step.description}
         </p>
 
         {/* Tip */}
         <div
           className={`flex items-start gap-2 text-xs px-3 py-2 rounded-lg ${
-            isPro ? "bg-amber-100/50 text-amber-600" : "bg-indigo-50 text-indigo-600"
+            isPro
+              ? "bg-amber-100/50 text-amber-600"
+              : "bg-indigo-50 text-indigo-600"
           }`}
         >
           <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
@@ -122,7 +132,9 @@ const SetupGuide = () => {
         <div className="mb-16">
           <div
             className={`flex items-center gap-3 mb-8 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: isVisible ? "100ms" : "0ms" }}
           >
@@ -149,7 +161,9 @@ const SetupGuide = () => {
           {/* CTA Button for Free */}
           <div
             className={`text-center mt-8 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: isVisible ? "500ms" : "0ms" }}
           >
@@ -173,7 +187,9 @@ const SetupGuide = () => {
           style={{ transitionDelay: isVisible ? "600ms" : "0ms" }}
         >
           <div className="flex flex-col items-center gap-2 text-gray-400">
-            <span className="text-sm font-medium">Want unlimited previews?</span>
+            <span className="text-sm font-medium">
+              Want unlimited previews?
+            </span>
             <ArrowDown className="w-6 h-6 animate-bounce" />
           </div>
         </div>
@@ -182,7 +198,9 @@ const SetupGuide = () => {
         <div>
           <div
             className={`flex items-center gap-3 mb-8 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: isVisible ? "700ms" : "0ms" }}
           >
@@ -209,7 +227,9 @@ const SetupGuide = () => {
           {/* CTA Button for Pro */}
           <div
             className={`text-center mt-8 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: isVisible ? "1100ms" : "0ms" }}
           >
@@ -235,7 +255,8 @@ const SetupGuide = () => {
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-emerald-50 border border-emerald-200 rounded-2xl">
             <CheckCircle2 className="w-6 h-6 text-emerald-500" />
             <span className="text-emerald-700 font-medium">
-              Pro tip: Refresh Monday.com after setup to ensure everything is working!
+              Pro tip: Refresh Monday.com after setup to ensure everything is
+              working!
             </span>
           </div>
         </div>
@@ -245,4 +266,3 @@ const SetupGuide = () => {
 };
 
 export default SetupGuide;
-

@@ -39,6 +39,6 @@ export const DEMO_PREVIEW = {
     title: "Instant Preview",
     subtitle: "No loading time",
   },
-  // Loom video embed URL
-  loomEmbedUrl: LINKS.loomVideo,
+  // YouTube video embed URL
+  youtubeEmbedUrl: LINKS.youtubeVideo,
 };
